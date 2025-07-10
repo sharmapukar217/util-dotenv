@@ -2,9 +2,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import prompts from "prompts";
-import symbols from "log-symbols";
 import { Command } from "commander";
+import symbols from "log-symbols";
+import prompts from "prompts";
 import pkgJson from "../package.json";
 
 const program = new Command();
@@ -114,7 +114,7 @@ program
         console.info(`\`${opts.output}\` file created successfully.`);
       } else {
         console.log("Configuration cancelled. No file was written.");
-        pro
+        pro;
         cess.exit(1);
       }
     } catch {

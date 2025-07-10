@@ -1,5 +1,5 @@
 {
-  "name": "env-utils",
+  "name": "dot-env-utils",
   "description": "env utils to manage .env files",
   "type": "module",
   "version": "1.0.0",

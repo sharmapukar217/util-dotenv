@@ -1,6 +1,6 @@
 {
   "name": "util-dotenv",
-  "description": "env utils to manage .env files",
+  "description": "Utility cli to manage .env files.",
   "type": "module",
   "version": "1.0.0",
   "bin": {

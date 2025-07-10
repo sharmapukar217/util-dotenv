@@ -8,7 +8,8 @@
   },
   "author": {
     "name": "Pukar Sharma",
-    "email": "sharmapukar217@gmail.com"
+    "email": "sharmapukar217@gmail.com",
+    "url": "https://github.com/sharmapukar217/util-dotenv"
   },
   "publishConfig": {
     "access": "public",

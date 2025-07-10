@@ -11,6 +11,7 @@
     "email": "sharmapukar217@gmail.com"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {

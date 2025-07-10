@@ -31,7 +31,7 @@ jobs:
 
       - name: Publish to npm
         run: |
-        echo ${{ secrets.NPM_TOKEN }}
-        pnpm publish --no-git-checks --access=public
+          echo ${{ secrets.NPM_TOKEN }}
+          pnpm publish --no-git-checks --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

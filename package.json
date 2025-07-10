@@ -1,10 +1,10 @@
 {
-  "name": "dot-env-utils",
+  "name": "@sharmapukar217/dotenv-utils",
   "description": "env utils to manage .env files",
   "type": "module",
   "version": "1.0.0",
   "bin": {
-    "env-utils": "./dist/index.js"
+    "dotenv-utils": "./dist/index.js"
   },
   "author": {
     "name": "Pukar Sharma",

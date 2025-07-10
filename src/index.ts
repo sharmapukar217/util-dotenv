@@ -9,7 +9,7 @@ import pkgJson from "../package.json";
 
 const program = new Command();
 
-program.name("dotenv-utils");
+program.name("util-dotenv");
 program.version(pkgJson.version);
 program.description(pkgJson.description);
 

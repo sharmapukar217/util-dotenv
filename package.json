@@ -2,15 +2,20 @@
   "name": "util-dotenv",
   "description": "Utility cli to manage .env files.",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "bin": {
     "dotenv-utils": "./dist/index.js"
   },
   "author": {
     "name": "Pukar Sharma",
     "email": "sharmapukar217@gmail.com",
-    "url": "https://github.com/sharmapukar217/util-dotenv"
+    "url": "https://github.com/sharmapukar217"
   },
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sharmapukar217/util-dotenv.git"
+  },
+  "homepage": "https://github.com/sharmapukar217/util-dotenv#readme",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
+
+  "formatter": {
+    "indentWidth": 2,
+    "indentStyle": "space"
+  },
+
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "bracketSameLine": true,
+      "trailingCommas": "none"
+    }
+  },
+
+  "linter": {
+    "rules": {
+      "recommended": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "env-utils",
+  "description": "env utils to manage .env files",
+  "type": "module",
+  "version": "1.0.0",
+  "bin": {
+    "env-utils": "./dist/index.js"
+  },
+  "author": {
+    "name": "Pukar Sharma",
+    "email": "sharmapukar217@gmail.com"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "format": "biome format --write",
+    "lint": "biome lint --fix --unsafe",
+    "build": "tsup --minify --format esm src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "log-symbols": "^7.0.1",
+    "prompts": "^2.4.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.1",
+    "@types/node": "^24.0.12",
+    "@types/prompts": "^2.4.9",
+    "lefthook": "^1.12.1",
+    "tsup": "^8.5.0"
+  }
+}

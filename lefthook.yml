@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged-files:
+      glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
+      run: npx @biomejs/biome check --write --colors=off {staged_files}

@@ -2,7 +2,7 @@
   "name": "util-dotenv",
   "description": "Utility cli to manage .env files.",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "dotenv-utils": "./dist/index.js"
   },

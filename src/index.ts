@@ -16,24 +16,37 @@ program.description(pkgJson.description);
 type Opts = {
   input: string;
   output: string;
+  quiet?: boolean;
 };
+
+// Helper logger that respects quiet flag
+const makeLogger = (quiet?: boolean) => ({
+  log: (...args: any[]) => {
+    if (!quiet) console.log(...args);
+  },
+  info: (...args: any[]) => {
+    if (!quiet) console.info(...args);
+  },
+  error: (...args: any[]) => {
+    if (!quiet) console.error(...args);
+  },
+});
 
 program
   .command("gen-env-example")
   .description("Create .env.example by copying keys from .env")
   .option("-i, --input <file>", "Path to the input .env file", ".env")
-  .option(
-    "-o, --output <file>",
-    "Path to the output example file",
-    ".env.example"
-  )
+  .option("-o, --output <file>", "Path to the output example file", ".env.example")
+  .option("-q, --quiet", "Suppress all console output")
   .action(async (opts: Opts) => {
+    const logger = makeLogger(opts.quiet);
+
     try {
       const inputPath = path.resolve(opts.input);
       const outputPath = path.resolve(opts.output);
 
       if (!fs.existsSync(inputPath)) {
-        console.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
+        logger.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
         process.exit(1);
       }
 
@@ -43,16 +56,15 @@ program
         .map((line) => {
           const trimmed = line.trim();
           if (trimmed === "" || trimmed.startsWith("#")) return line;
-
           const index = line.indexOf("=");
           return index === -1 ? line : `${line.substring(0, index)}=`;
         });
 
       fs.writeFileSync(outputPath, outputLines.join("\n"), "utf-8");
-      console.log(`\`${opts.output}\` file generated.`);
-    } catch (err) {
-      console.error(`[ERROR]: ${err.message}.`);
-      console.error(`[ERROR]: Can't generate \`${opts.output}\`.`);
+      logger.log(`\`${opts.output}\` file generated.`);
+    } catch (err: any) {
+      logger.error(`[ERROR]: ${err.message}.`);
+      logger.error(`[ERROR]: Can't generate \`${opts.output}\`.`);
     }
   });
 
@@ -61,26 +73,20 @@ program
   .description(
     "Generate a .env file by reading from a .env.example file, prompting for any missing values"
   )
-  .option(
-    "-i, --input <file>",
-    "Path to the source .env.example file",
-    ".env.example"
-  )
-  .option(
-    "-o, --output <file>",
-    "Path where the generated .env file will be saved",
-    ".env"
-  )
+  .option("-i, --input <file>", "Path to the source .env.example file", ".env.example")
+  .option("-o, --output <file>", "Path where the generated .env file will be saved", ".env")
+  .option("-q, --quiet", "Suppress all console output")
   .action(async (opts: Opts) => {
+    const logger = makeLogger(opts.quiet);
     const inputPath = path.resolve(opts.input);
     const outputPath = path.resolve(opts.output);
 
     if (!fs.existsSync(inputPath)) {
-      console.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
+      logger.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
       process.exit(1);
     }
 
-    console.log(
+    logger.info(
       `\n${symbols.info} Configuring your environment. Press \`Ctrl-c\` to skip`
     );
 
@@ -111,14 +117,13 @@ program
 
       if (answers.some((str) => typeof str === "string" && str.trim() !== "")) {
         fs.writeFileSync(outputPath, outputLines.join("\n"), "utf-8");
-        console.info(`\`${opts.output}\` file created successfully.`);
+        logger.info(`\`${opts.output}\` file created successfully.`);
       } else {
-        console.log("Configuration cancelled. No file was written.");
-        pro;
-        cess.exit(1);
+        logger.error("Configuration cancelled. No file was written.");
+        process.exit(1);
       }
     } catch {
-      console.log("Configuration cancelled. No file was written.");
+      logger.error("Configuration cancelled. No file was written.");
       process.exit(0);
     }
   });

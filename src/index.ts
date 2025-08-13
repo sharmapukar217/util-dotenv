@@ -47,7 +47,7 @@ program
 
       if (!fs.existsSync(inputPath)) {
         logger.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
-        process.exit(1);
+        process.exit(0);
       }
 
       const outputLines = fs
@@ -83,7 +83,7 @@ program
 
     if (!fs.existsSync(inputPath)) {
       logger.error(`[ERROR]: Input file \`${opts.input}\` not found.`);
-      process.exit(1);
+      process.exit(0);
     }
 
     logger.info(
@@ -120,7 +120,7 @@ program
         logger.info(`\`${opts.output}\` file created successfully.`);
       } else {
         logger.error("Configuration cancelled. No file was written.");
-        process.exit(1);
+        process.exit(0);
       }
     } catch {
       logger.error("Configuration cancelled. No file was written.");
